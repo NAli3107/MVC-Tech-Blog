@@ -10,34 +10,12 @@ router.get("/", async (req, res) => {
     const postData = posts.map((post) => post.get({ plain: true }));
     // res.render after create handlebars
     // res.json(postData);
-    res.render("homePage", {
+    res.render("homepage", {
         postData,
         logged_in: req.session.logged_in,
     })
   } catch (err) {
     console.log(err);
-  }
-});
-
-router.get('/project/:id', async (req, res) => {
-  try {
-    const postData = await BlogPost.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const posts = projectData.get({ plain: true });
-
-    res.render('project', {
-      ...posts,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
   }
 });
 
@@ -54,7 +32,28 @@ router.get('/posts', async (req, res) => {
 
     const posts = postData.get({ plain: true });
 
-    res.render('project', {
+    res.render('post', {
+      ...posts,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get('/posts/:id', async (req, res) => {
+  try {
+    const postData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const posts = projectData.get({ plain: true });
+
+    res.render('post', {
       ...posts,
       logged_in: req.session.logged_in
     });
@@ -70,12 +69,12 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/signup", (req, res) => {
-  console.log("route is being hit");
-  if (req.session.logged_in) {
-    res.redirect("/");
-  }
-  res.render("signup");
-});
+// router.get("/signup", (req, res) => {
+//   console.log("route is being hit");
+//   if (req.session.logged_in) {
+//     res.redirect("/");
+//   }
+//   res.render("signup");
+// });
 
 module.exports = router;
