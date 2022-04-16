@@ -19,8 +19,63 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get('/project/:id', async (req, res) => {
+  try {
+    const postData = await BlogPost.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
 
+    const posts = projectData.get({ plain: true });
 
-/* add get request for getting blogpost by id */
+    res.render('project', {
+      ...posts,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/posts', async (req, res) => {
+  try {
+    const postData = await Project.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name', 'id'],
+        },
+      ],
+    });
+
+    const posts = postData.get({ plain: true });
+
+    res.render('project', {
+      ...posts,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/login", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/");
+  }
+  res.render("login");
+});
+
+router.get("/signup", (req, res) => {
+  console.log("route is being hit");
+  if (req.session.logged_in) {
+    res.redirect("/");
+  }
+  res.render("signup");
+});
 
 module.exports = router;
