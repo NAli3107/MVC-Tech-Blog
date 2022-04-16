@@ -19,20 +19,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect("/");
-  }
-  res.render("login");
-});
 
-router.get("/signup", (req, res) => {
-  console.log("route is being hit");
-  if (req.session.logged_in) {
-    res.redirect("/");
-  }
-  res.render("signup");
-});
 
 /* add get request for getting blogpost by id */
 
