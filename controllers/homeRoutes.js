@@ -7,55 +7,54 @@ router.get("/", async (req, res) => {
     const posts = await BlogPost.findAll({
       include: [User],
     });
+
     const postData = posts.map((post) => post.get({ plain: true }));
-    // res.render after create handlebars
-    // res.json(postData);
     res.render("homepage", {
-        postData,
-        logged_in: req.session.logged_in,
-    })
+      postData,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get('/posts', async (req, res) => {
+router.get("/posts", async (req, res) => {
   try {
     const postData = await Project.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name', 'id'],
+          attributes: ["name", "id"],
         },
       ],
     });
 
     const posts = postData.get({ plain: true });
 
-    res.render('post', {
+    res.render("post", {
       ...posts,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-router.get('/posts/:id', async (req, res) => {
+router.get("/posts/:id", async (req, res) => {
   try {
     const postData = await BlogPost.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ["name"],
         },
       ],
     });
 
     const posts = projectData.get({ plain: true });
 
-    res.render('post', {
+    res.render("post", {
       ...posts,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
