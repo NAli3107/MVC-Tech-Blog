@@ -1,14 +1,7 @@
-/*
-3 post routes
-- sign up
-- login 
-- log out
-- inside student mini project
-*/
-
 const router = require('express').Router();
 const { User } = require('../../models');
 
+/* Post request to create a user route*/
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -24,6 +17,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+/* Post request to create login route */
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -56,6 +50,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/* Post request to create logout route */
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
