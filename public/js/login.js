@@ -38,8 +38,9 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace("/");
+        document.location.replace("/dashboard");
       } else {
+        console.log("not allowing sign-up")
         alert(response.statusText);
       }
     }
