@@ -4,10 +4,16 @@ const { User } = require('../../models');
 /* Post request to create a user route*/
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    console.log(req.body, "from sign-up route")
+    const userData = await User.create({
+      username: req.body.name,
+      email: req.body.email,
+      password:req.body.password,
+    });
 
     req.session.save(() => {
       req.session.user_id = userData.id;
+      req.session.email = userData.email;
       req.session.logged_in = true;
 
       res.status(200).json(userData);

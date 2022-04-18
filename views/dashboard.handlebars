@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+    <h2>Welcome, {{user.username}}!</h2>
   </div>
 </div>
 
@@ -8,14 +8,14 @@
   <div class="col-md-6">
     <h3>Create a New Blog Post:</h3>
 
-    <form class="form new-project-form">
+    <form class="form new-post-form">
       <div class="form-group">
         <label for="project-name">Blog Post Name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <input class="form-input" type="text" id="post-title" name="project-name" />
       </div>
       <div class="form-group">
         <label for="project-desc">Content: Share what's on your mind!</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+        <textarea class="form-input" id="post-desc" name="project-desc"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -23,17 +23,17 @@
     </form>
   </div>
 
-  {{#if blogPost.length}}
+  {{#if posts}}
   <div class="col-md-6 project-list">
     <h3>Current Blog Posts:</h3>
 
-    {{#each blogPosts as |blogPost|}}
+    {{#each posts}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{blogPost.id}}">{{blogPost.name}}</a></h4>
+        <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{blogPost.id}}">DELETE</button>
+        <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
       </div>
     </div>
     {{/each}}
@@ -41,4 +41,4 @@
   {{/if}}
 </div>
 
-<script src="../js/editPost.js"></script>
+<script src="/js/newPost.js"></script>
