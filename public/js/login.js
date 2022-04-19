@@ -9,7 +9,7 @@ const loginFormHandler = async (event) => {
       // Send a POST request to the API endpoint
       const response = await fetch("/api/user/login", {
         method: "POST",
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email:email, password:password }),
         headers: { "Content-Type": "application/json" },
       });
   
@@ -40,7 +40,7 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace("/dashboard");
       } else {
-        console.log("not allowing sign-up")
+        // console.log("not allowing sign-up")
         alert(response.statusText);
       }
     }
