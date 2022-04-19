@@ -17,9 +17,8 @@ const loginFormHandler = async (event) => {
         // If successful, redirect the browser to the landing page
         document.location.replace("/");
       } else {
-        // document.getElementById("login-email").innerHTML =
-        //   "Credentials dont exist, signup instead";
-          console.log("not allowing login")
+        document.getElementById("login-email").innerHTML =
+          "Credentials dont exist, signup instead";
         alert(response.statusText);
       }
     }
@@ -42,7 +41,6 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace("/dashboard");
       } else {
-        // console.log("not allowing sign-up")
         alert(response.statusText);
       }
     }
