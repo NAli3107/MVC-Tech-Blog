@@ -24,7 +24,6 @@ const newFormHandler = async (event) => {
 
 const delButtonHandler = async (event) => {
   const id = event.target.getAttribute("data-id");
-  console.log(id);
   const response = await fetch(`/api/posts/${id}`, {
     method: "DELETE",
   });
@@ -40,6 +39,8 @@ document
   .querySelector(".new-post-form")
   .addEventListener("submit", newFormHandler);
 
-document
-  .querySelector(".project-list")
-  .addEventListener("click", delButtonHandler);
+const deleteButton = document.querySelector(".post-list");
+
+if (deleteButton) {
+  deleteButton.addEventListener("click", delButtonHandler);
+}

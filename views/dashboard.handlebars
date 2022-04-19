@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{user.username}}!</h2>
+    <h1>Welcome, {{user.name}}!</h1>
   </div>
 </div>
 
@@ -10,12 +10,12 @@
 
     <form class="form new-post-form">
       <div class="form-group">
-        <label for="project-name">Blog Post Name:</label>
-        <input class="form-input" type="text" id="post-title" name="project-name" />
+        <label for="inputEmail4">Post Name:</label>
+        <input class="form-control" type="text" id="post-title" placeholder="post name" />
       </div>
       <div class="form-group">
-        <label for="project-desc">Content: Share what's on your mind!</label>
-        <textarea class="form-input" id="post-desc" name="project-desc"></textarea>
+        <label for="inputAddress">Content:</label>
+        <input class="form-control" type="text" id="post-desc" name="post content"></input>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -24,13 +24,16 @@
   </div>
 
   {{#if posts}}
-  <div class="col-md-6 project-list">
+  <div class="col-md-6 post-list">
     <h3>Current Blog Posts:</h3>
 
     {{#each posts}}
     <div class="row mb-2">
       <div class="col-md-8">
         <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
+      </div>
+      <div>
+        <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>

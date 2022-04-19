@@ -17,12 +17,14 @@ const loginFormHandler = async (event) => {
         // If successful, redirect the browser to the landing page
         document.location.replace("/");
       } else {
-        document.getElementById("login-email").innerHTML =
-          "Credentials dont exist, signup instead";
-        // alert(response.statusText);
+        // document.getElementById("login-email").innerHTML =
+        //   "Credentials dont exist, signup instead";
+          console.log("not allowing login")
+        alert(response.statusText);
       }
     }
   };
+  
   const signupFormHandler = async (event) => {
     event.preventDefault();
   

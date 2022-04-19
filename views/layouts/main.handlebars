@@ -4,28 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Blog!</title>
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/style.css">
+  <title>Tech Blog!</title>
 </head>
 
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="computer">💻</span>
-        <a href="/">Tech Blog!</a>
-      </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
+      <nav class="navbar navbar-expand-lg navbar" id="navbar">
         {{#if logged_in}}
-        <a href="/dashboard">Dashboard</a> |
-        <button class="no-button" id="logout">logout</button>
+        <span class="navbar-brand mb-0 h1">Tech Blog!💻</span>
+          <a class="navbar-brand" href="/">Home 🏠</a>
+          <a class="navbar-brand" href="/dashboard">Dashboard 💭<span class="sr-only">(current)</span></a>  
+          <a class="navbar-brand" id="logout"href="/login">Logout 👋</a>
         {{else}}
-        <a href="/login">login</a>
+          <a class="navbar-brand" href="/login">Login 👋</a>
         {{/if}}
-      </nav>
+           </div>
+          </div>
+        </nav>
     </header>
+
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
@@ -39,6 +43,7 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 </body>
 
 </html>
