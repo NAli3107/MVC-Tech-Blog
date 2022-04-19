@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
 /* Post request to create login route */
 router.post('/login', async (req, res) => {
   try {
+    console.log("reached")
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {

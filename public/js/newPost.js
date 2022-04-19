@@ -31,7 +31,7 @@ const delButtonHandler = async (event) => {
   if (response.ok) {
     window.location.reload();
   } else {
-    alert("Failed to delete project");
+    alert("Failed to delete post");
   }
 };
 
