@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         // If successful, redirect the browser to the landing page
-        document.location.replace("/");
+        document.location.replace("/dashboard");
       } else {
         document.getElementById("login-email").innerHTML =
           "Credentials dont exist, signup instead";
