@@ -1,17 +1,18 @@
-{{!-- <div class="posts">
-  {{#each BlogPosts as | BlogPost }}
-    <article class="card">
+<div class="posts">
+  {{#each postData }}
+  {{log postData}}
+    <div class="card">
       <div class="card-header bg-light flex-row justify-space-between">
         <h2>
-          <a href="/post/{{BlogPost.id}}">{{BlogPost.title}}</a>
+          <a href="/posts/{{id}}">{{title}}</a>
         </h2>
         <div>
           Post by
-          {{BlogPost.user.username}}
+          {{user.username}}
           on
-          {{format_date BlogPost.date_created}}
+          {{format_date date_created}}
         </div>
       </div>
-    </article>
+    </div>
   {{/each}}
-</div> --}}
+</div>

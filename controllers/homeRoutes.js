@@ -5,20 +5,7 @@ const withAuth = require("../utils/auth");
 router.get("/", async (req, res) => {
   try {
     const posts = await BlogPost.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["username"],
-        },
-        {
-          model: Comment,
-          attributes: ["id", "content", "post_id", "user_id", "date_created"],
-          include: {
-            model: User,
-            attributes: ["username"],
-          },
-        },
-      ],
+      include: [User],
     });
 
     const postData = posts.map((post) => post.get({ plain: true }));
@@ -52,22 +39,21 @@ router.get("/posts", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.get("/posts/:id", async (req, res) => {
   try {
     const postData = await BlogPost.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ["name"],
         },
       ],
     });
 
-    const posts = projectData.get({ plain: true });
+    const posts = postData.get({ plain: true });
 
     res.render("posts", {
       ...posts,
-      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);

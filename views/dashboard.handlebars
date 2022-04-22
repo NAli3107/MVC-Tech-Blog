@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-auto">
-    <h1>Welcome, {{user.name}}!</h1>
+    {{#each posts}}
+    <h1>Welcome, {{user.username}}!</h1>
+    {{log posts}}
+    {{/each}}
   </div>
 </div>
 
@@ -24,19 +27,13 @@
   </div>
 
   {{#if posts}}
-  <div class="col-md-6 post-list">
+  <div class="col-md-6">
     <h3>Current Blog Posts:</h3>
 
     {{#each posts}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/api/posts/{{id}}">{{title}}</a></h4>
-      </div>
-      <div>
-        <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
+        <h4><a href="/posts/{{id}}">{{title}}</a></h4>
       </div>
     </div>
     {{/each}}
