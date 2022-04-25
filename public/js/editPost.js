@@ -13,7 +13,7 @@ const editButtonHandler = async (event) => {
   });
 
   if (response.ok) {
-    window.location.reload();
+    window.location.assign(`/dashboard/posts/${id}`);
   } else {
     alert("Failed to update post");
   }

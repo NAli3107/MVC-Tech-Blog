@@ -1,15 +1,18 @@
 const router = require("express").Router();
+const req = require("express/lib/request");
 const { User, BlogPost } = require("../models");
 const withAuth = require("../utils/auth");
+
 
 router.get("/", withAuth, async (req, res) => {
   try {
     const userData = await BlogPost.findAll({
       include: [User],
+      where: { user_id: req.session.user_id },
     });
 
     const posts = userData.map((post) => post.get({ plain: true }));
-    console.log(posts);
+    // console.log(posts);
     res.render("dashboard", {
       posts,
       logged_in: true,
@@ -33,7 +36,8 @@ router.get("/posts/:id", withAuth, async (req, res) => {
 
     res.render("posts-admin", {
       ...posts,
-      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
@@ -54,7 +58,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 
     res.render("edit", {
       ...posts,
-      logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
     });
   } catch (err) {
     res.status(500).json(err);

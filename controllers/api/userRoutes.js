@@ -59,9 +59,10 @@ router.post('/login', async (req, res) => {
 
 /* Post request to create logout route */
 router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.user_id) {
     req.session.destroy(() => {
       res.status(204).end();
+      console.log("logged out")
     });
   } else {
     res.status(404).end();
