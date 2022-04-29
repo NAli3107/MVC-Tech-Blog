@@ -32,7 +32,7 @@ router.get("/posts/:id", async (req, res) => {
     });
 
     const posts = postData.get({ plain: true });
-    console.log(posts, "received")
+    // console.log(posts, "received")
     res.render("posts", {
       ...posts,
     });
