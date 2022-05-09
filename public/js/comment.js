@@ -2,7 +2,7 @@ const createComment = async (event) => {
   event.preventDefault()
   const content = document.querySelector("#comment-body").value;
   const post_id = document.querySelector(".post-title").getAttribute("data-id");
-
+  console.log(content, post_id)
   const response = await fetch("/api/comments", {
     method: "POST",
     body: JSON.stringify({
@@ -13,7 +13,7 @@ const createComment = async (event) => {
   });
   if (response.ok) {
     // console.log(response)
-    document.location.reload();
+    window.location.reload();
   } else {
     alert('Your comment could not be added!')
   }

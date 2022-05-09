@@ -1,16 +1,16 @@
     <div class="card">
-      <div class="card-header bg-light flex-row justify-space-between post-title" data-id="{{id}}">
+      <div class="card-header bg-light flex-row justify-space-between post-title" data-id="{{posts.id}}">
         <h2>
-          {{title}}
+          {{posts.title}}
         </h2>
         <h3>
-            {{content}}
+            {{posts.content}}
         </h3>
         <div>
           Post by
-          {{user.username}}
+          {{posts.user.username}}
           on
-          {{format_date date_created}}
+          {{format_date posts.date_created}}
         </div>
       </div>
     </div>
@@ -25,7 +25,7 @@
 <div>
 {{#if posts.comments}}
 {{#each posts.comments}}
-{{log comments 'am i getting this'}}
+{{log posts.comments 'am i getting this'}}
 <div class="card">
   <div class="card-body">
     {{content}}
