@@ -25,6 +25,8 @@ This application is a CMS-style blog site similar to a Wordpress site, where dev
 
 Users can access the deployed application on Heroku using the following link:
 
+https://intense-tundra-02276.herokuapp.com/
+
 
 ## Examples
 
